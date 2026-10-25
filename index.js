@@ -105,6 +105,7 @@ const cameraScreen = document.getElementById("camera-screen");
 const safeScreen = document.getElementById("safe-screen");
 const unsafeScreen = document.getElementById("unsafe-screen");
 const unverifiedScreen = document.getElementById("unverified-screen");
+const resultScreen = document.getElementById("result-screen");
 const unverifiedMessage = document.getElementById("unverified-message");
 const videoElement = document.getElementById("webcam");
 const canvas = document.getElementById("canvas");
@@ -115,6 +116,8 @@ const scanStatus = document.getElementById("scan-status");
 const scanDetails = document.getElementById("scan-details");
 const scanMatchMessage = document.getElementById("scan-match-message");
 const recognizedTextElement = document.getElementById("recognized-text");
+
+
 
 // Clear any previous allergen terms and uncheck the allergy boxes on page load.
 function resetSelectionState() {
@@ -130,25 +133,25 @@ document.getElementById("chinese-btn").addEventListener("click", () => {
   currentLanguage = "chinese";
    document.body.setAttribute("data-lang", "chinese");
   document.getElementById("welcome-screen").style.display = "none";
-  allergyScreen.style.display = "block";
+  allergyScreen.style.display = "flex";
 });
 document.getElementById("spanish-btn").addEventListener("click", () => {
   currentLanguage = "spanish";
    document.body.setAttribute("data-lang", "spanish");
   document.getElementById("welcome-screen").style.display = "none";
-  allergyScreen.style.display = "block";
+  allergyScreen.style.display = "flex";
 });
 document.getElementById("english-btn").addEventListener("click", () => {
   currentLanguage = "english";
    document.body.setAttribute("data-lang", "english");
   document.getElementById("welcome-screen").style.display = "none";
-  allergyScreen.style.display = "block";
+  allergyScreen.style.display = "flex";
 });
 document.getElementById("hindi-btn").addEventListener("click", () => {
   currentLanguage = "hindi";
    document.body.setAttribute("data-lang", "hindi");
   document.getElementById("welcome-screen").style.display = "none";
-  allergyScreen.style.display = "block";
+  allergyScreen.style.display = "flex";
 });
 
 
@@ -196,13 +199,20 @@ function checkLabelSafety(recognizedText) {
 
 // Hide the camera and show either the safe or unsafe message and the OCR text.
 // "Safe" here means only that no selected terms were found in the text OCR read.
+
 // Next screen where the user will see if the food is safe or not based on the OCR results and their selected allergies
+
+//safe screen
 function showResultScreen(isSafe, detectedKeywords, recognizedText) {
+  // Hide the camera and show either the safe or unsafe message and the OCR text.
   cameraScreen.style.display = "none";
-  safeScreen.style.display = isSafe ? "block" : "none";
-  unsafeScreen.style.display = isSafe ? "none" : "block";
+  resultScreen.style.display = "flex";
+  resultScreen.classList.toggle("is-safe", isSafe);
+  resultScreen.classList.toggle("is-unsafe", !isSafe);
+  safeScreen.style.display = isSafe ? "flex" : "none";
+  unsafeScreen.style.display = isSafe ? "none" : "flex";
   unverifiedScreen.style.display = "none";
-  scanDetails.style.display = "block";
+  scanDetails.style.display = "flex";
   scanMatchMessage.textContent = isSafe
     ? appMessages[currentLanguage].safeMatch
     : `${appMessages[currentLanguage].unsafeMatchPrefix}${detectedKeywords.join(", ")}`;
@@ -212,11 +222,11 @@ function showResultScreen(isSafe, detectedKeywords, recognizedText) {
 // Show an error screen when the label could not be read well enough to check.
 function showUnverifiedScreen(message) {
   cameraScreen.style.display = "none";
+  resultScreen.style.display = "none";
   safeScreen.style.display = "none";
   unsafeScreen.style.display = "none";
-  scanDetails.style.display = "none";
   unverifiedMessage.textContent = message;
-  unverifiedScreen.style.display = "block";
+  unverifiedScreen.style.display = "flex";
 }
 
 // Gather the selected allergy terms, require at least one allergy, and then open
@@ -252,7 +262,7 @@ document.getElementById("submit-allergies").addEventListener("click", () => {
   }
 
   allergyScreen.style.display = "none";
-  cameraScreen.style.display = "block";
+  cameraScreen.style.display = "flex";
   startCamera();
 });
 
@@ -328,8 +338,8 @@ function returnToCamera() {
   unverifiedScreen.style.display = "none";
   safeScreen.style.display = "none";
   unsafeScreen.style.display = "none";
-  scanDetails.style.display = "none";
-  cameraScreen.style.display = "block";
+  resultScreen.style.display = "none";
+  cameraScreen.style.display = "flex";
 }
 
 // Let the user retry after either an unreadable scan or a displayed scan result.

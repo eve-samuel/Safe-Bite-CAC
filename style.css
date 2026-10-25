@@ -21,7 +21,7 @@
 
 .rotating-hello::after {
   content: "Hello";
-  animation: changeWords 7s infinite ease-in-out;
+  animation: changeWords 6s infinite ease-in-out;
 }
 
 /* Rotating text animation keyframes */
@@ -34,22 +34,16 @@
 
 /* 2. Main Viewport App Container */
 body {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 16px;
   background-color: #ffffff; /* Default clean white canvas screen background */
-  color: #0f1d2a;            /* Dark Blue accent text */
-}
-
-/* 3. Dynamic Full Screen Status Color Overlays */
-.screen-state-safe {
-  background-color: #e8f7f0 !important; /* Soft light green screen overlay */
-}
-
-.screen-state-danger {
-  background-color: #fde8e8 !important; /* Urgent soft red screen overlay */
+  color: #154b81;            /* Dark Blue accent text */
 }
 
 /* 4. Main Panel Layout Card */
@@ -61,13 +55,56 @@ body {
   box-shadow: 0 10px 30px rgba(15, 29, 42, 0.08);
   padding: 28px;
   border: 1px solid #e5e9f0;
+  /* stacks everything vertically and nicely centers it in the middle of the screen */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#result-screen {
+  gap: 16px;
+  width: 100%;
+  max-height: calc(100vh - 32px);
+  max-height: calc(100dvh - 32px);
+  overflow-y: auto;
+}
+
+#result-screen.is-safe {
+  background-color: #75eeb6;
+}
+
+#result-screen.is-unsafe {
+  background-color: #f98d8d;
+}
+
+.result-status,
+.result-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.result-status {
+  text-align: center;
+}
+
+.result-details details,
+.result-details pre {
+  width: 100%;
+  max-width: 100%;
+}
+
+.result-details pre {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
 }
 
 /* 5. Typography Formatting Elements */
 h1 {
   font-size: 26px;
   font-weight: 700;
-  color: #0f1d2a; /* Dark Blue main color header font */
+  color: #214669; /* Dark Blue main color header font */
   text-align: center;
   margin-bottom: 8px;
 }
@@ -128,6 +165,12 @@ button:hover {
   transform: scaleX(-1);
   margin-bottom: 20px;
 }
+
+
+#safe-screen, #unsafe-screen {
+  display: none;
+}
+
 
 /* ==========================================================================
    9. MULTI-LANGUAGE TRANSLATION DICTIONARY (OPTION A ENGINE)

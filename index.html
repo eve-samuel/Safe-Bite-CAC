@@ -15,7 +15,7 @@
   </head>
   <body>
     <!-- // welcome screen is visible by default -->
-    <div id="welcome-screen" class="screen" style="display: block;">
+    <div id="welcome-screen" class="screen" style="display: flex;">
 
       <!-- //hello heading that will rotate through languages -->
       <h1 class="rotating-hello"></h1>
@@ -56,36 +56,33 @@
 <canvas id="canvas" style="overflow:auto"></canvas>
     </div>
 
- <!-- //next screen where the user will see if the food is safe or not based on the OCR results and their selected allergies -->   
-    <div id="safe-screen" class="screen" style="display: none;">
-<!--    //emptys the h1 and p elements so they can be updated based on the language selected -->  
-      <h1 class="safe-title"</h1>
+  <!-- if the ocr fails to read the label, this screen is displayed -->
+  <div id="unverified-screen" class="screen" style="display: none;">
+    <h1 id="unverified-title"></h1>
+    <p id="unverified-message" role="alert"></p>
+    <button id="retry-scan"></button>
+  </div>
+
+  <section id="result-screen" class="screen" style="display: none;">
+    <div id="safe-screen" class="result-status">
+      <h1 class="safe-title"></h1>
       <p class="safe-desc"></p>
     </div>
 
-    <div id="unsafe-screen" class="screen" style="display: none;">
-     <h1 class="unsafe-title"></h1>
-     <p class="unsafe-desc"></p>
+    <div id="unsafe-screen" class="result-status">
+      <h1 class="unsafe-title"></h1>
+      <p class="unsafe-desc"></p>
     </div>
 
-  <!-- if the ocr fails to read the label, this screen is displayed -->
-    <div id="unverified-screen" class="screen" style="display: none;">
-      <h1 id="unverified-title"></h1>
-      <p id="unverified-message" role="alert"></p>
-      <button id="retry-scan"></button>
-    </div>
-
-    <section id="scan-details" class="screen" style="display: none;">
+    <div id="scan-details" class="result-details">
       <p id="scan-match-message"></p>
       <details>
-
-       <!-- // displays the text read from the label in a collapsible section, allowing the user to see the OCR results--> 
-<summary id="label-text-summary"></summary>
+        <summary id="label-text-summary"></summary>
         <pre id="recognized-text"></pre>
       </details>
-    <!--  // button to allow the user to scan another label if they want to check more food items -->
       <button id="retry-result-scan"></button>
-    </section>
+    </div>
+  </section>
  
     <!-- //loads the Tesseract.js library from a CDN, which is used for OCR processing of the captured image, it is minified to reduce file size and improve loading times. The index.js script is also loaded, which contains the main logic for the SafeBite app. -->
     <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
