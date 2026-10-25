@@ -1,0 +1,254 @@
+/* ==========================================================================
+   CONGRESSIONAL APP CHALLENGE - BRAND PALETTE DESIGN
+   ========================================================================== */
+
+/* 1. Global Reset & Core Typography */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+}
+
+.rotating-hello {
+  color: #0f1d2a;            
+  font-size: 4rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+  height: 80px;
+}
+
+.rotating-hello::after {
+  content: "Hello";
+  animation: changeWords 7s infinite ease-in-out;
+}
+
+/* Rotating text animation keyframes */
+@keyframes changeWords {
+  0%, 25% { content: "Hello"; }
+  26%, 50% { content: "Hola"; }
+  51%, 75% { content: "नमस्ते"; }
+  76%, 100% { content: "你好"; }
+}
+
+/* 2. Main Viewport App Container */
+body {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff; /* Default clean white canvas screen background */
+  color: #0f1d2a;            /* Dark Blue accent text */
+}
+
+/* 3. Dynamic Full Screen Status Color Overlays */
+.screen-state-safe {
+  background-color: #e8f7f0 !important; /* Soft light green screen overlay */
+}
+
+.screen-state-danger {
+  background-color: #fde8e8 !important; /* Urgent soft red screen overlay */
+}
+
+/* 4. Main Panel Layout Card */
+.screen {
+  background-color: #ffffff;
+  width: 100%;
+  max-width: 420px;
+  border-radius: 24px;
+  box-shadow: 0 10px 30px rgba(15, 29, 42, 0.08);
+  padding: 28px;
+  border: 1px solid #e5e9f0;
+}
+
+/* 5. Typography Formatting Elements */
+h1 {
+  font-size: 26px;
+  font-weight: 700;
+  color: #0f1d2a; /* Dark Blue main color header font */
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+p {
+  font-size: 14px;
+  color: #5a6e7f;
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+/* 6. Form Checklist Item Options (Allergy Grid Fields) */
+label {
+  display: flex;
+  align-items: center;
+  background: #f4f7f6;
+  padding: 14px 18px;
+  border-radius: 14px;
+  margin-bottom: 12px;
+  font-weight: 600;
+  color: #0f1d2a; /* Dark Blue branding */
+  cursor: pointer;
+}
+
+input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  margin-right: 14px;
+  accent-color: #10b981; /* High-visibility Green selector checkbox check */
+  cursor: pointer;
+}
+
+/* 7. Action Controls (Premium Flat Buttons) */
+button {
+  width: 100%;
+  background-color: #0f1d2a; /* Dark Blue solid default primary buttons fill */
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 14px;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  margin-bottom: 10px;
+}
+
+button:hover {
+  background-color: #071018; /* Darker blue variation tint layer on element hover */
+}
+
+/* 8. Camera Capture Mirror Frames */
+#webcam {
+  width: 100%;
+  border-radius: 16px;
+  border: 4px solid #0f1d2a; /* Thick Dark Blue border framework profile */
+  background: #000000;
+  transform: scaleX(-1);
+  margin-bottom: 20px;
+}
+
+/* ==========================================================================
+   9. MULTI-LANGUAGE TRANSLATION DICTIONARY (OPTION A ENGINE)
+   ========================================================================== */
+
+/* ----------------------------------------------------
+   ENGLISH DICTIONARY LOOPS
+   ---------------------------------------------------- */
+body[data-lang="english"] #start-btn::after         { content: "Tap to Continue"; }
+body[data-lang="english"] #submit-allergies::after { content: "Continue to Camera 📷"; }
+body[data-lang="english"] .safe-title::after       { content: "No Selected Allergens Detected ✅"; }
+body[data-lang="english"] .safe-desc::after        { content: "Our scanner can miss text. Always verify the ingredients and allergen warnings on the package."; }
+body[data-lang="english"] .unsafe-title::after     { content: "Unsafe to Eat! ❌"; }
+body[data-lang="english"] .unsafe-desc::after      { content: "This food contains one or more of your selected allergens."; }
+/* Labels */
+body[data-lang="english"] #label-peanuts::after   { content: "Peanuts 🥜"; }
+body[data-lang="english"] #label-soybeans::after  { content: "Soybeans 🌱"; }
+body[data-lang="english"] #label-wheat::after     { content: "Wheat 🌾"; }
+body[data-lang="english"] #label-fish::after      { content: "Fish 🐟"; }
+body[data-lang="english"] #label-tree-nuts::after { content: "Tree Nuts 🌰"; }
+body[data-lang="english"] #label-sesame::after    { content: "Sesame"; }
+body[data-lang="english"] #label-milk::after      { content: "Milk 🥛"; }
+body[data-lang="english"] #label-eggs::after      { content: "Eggs 🥚"; }
+
+/* ----------------------------------------------------
+   SPANISH DICTIONARY LOOPS
+   ---------------------------------------------------- */
+body[data-lang="spanish"] #start-btn::after         { content: "Presione para continuar"; }
+body[data-lang="spanish"] #submit-allergies::after { content: "Continuar a la cámara 📷"; }
+body[data-lang="spanish"] .safe-title::after       { content: "No se detectaron alérgenos seleccionados ✅"; }
+body[data-lang="spanish"] .safe-desc::after        { content: "Nuestro escáner puede omitir texto. Verifique siempre los ingredientes y las advertencias de alérgenos en el paquete."; }
+body[data-lang="spanish"] .unsafe-title::after     { content: "¡No es seguro para comer! ❌"; }
+body[data-lang="spanish"] .unsafe-desc::after      { content: "Este alimento contiene uno o más de sus alérgenos seleccionados."; }
+/* Labels */
+body[data-lang="spanish"] #label-peanuts::after   { content: "Cacahuates 🥜"; }
+body[data-lang="spanish"] #label-soybeans::after  { content: "Soya 🌱"; }
+body[data-lang="spanish"] #label-wheat::after     { content: "Trigo 🌾"; }
+body[data-lang="spanish"] #label-fish::after      { content: "Pescado 🐟"; }
+body[data-lang="spanish"] #label-tree-nuts::after { content: "Frutos Secos 🌰"; }
+body[data-lang="spanish"] #label-sesame::after    { content: "Sésamo"; }
+body[data-lang="spanish"] #label-milk::after      { content: "Leche 🥛"; }
+body[data-lang="spanish"] #label-eggs::after      { content: "Huevos 🥚"; }
+
+/* ----------------------------------------------------
+   CHINESE DICTIONARY LOOPS
+   ---------------------------------------------------- */
+body[data-lang="chinese"] #start-btn::after         { content: "轻点以继续"; }
+body[data-lang="chinese"] #submit-allergies::after { content: "继续前往相机 📷"; }
+body[data-lang="chinese"] .safe-title::after       { content: "未检测到所选过敏原 ✅"; }
+body[data-lang="chinese"] .safe-desc::after        { content: "我们的扫描仪可能会漏掉文本。请务必核对包装上的成分和过敏原警告。"; }
+body[data-lang="chinese"] .unsafe-title::after     { content: "不能食用！❌"; }
+body[data-lang="chinese"] .unsafe-desc::after      { content: "此食物含有您选择的一种或多种过敏原。"; }
+/* Labels */
+body[data-lang="chinese"] #label-peanuts::after   { content: "花生 🥜"; }
+body[data-lang="chinese"] #label-soybeans::after  { content: "大豆 🌱"; }
+body[data-lang="chinese"] #label-wheat::after     { content: "小麦 🌾"; }
+body[data-lang="chinese"] #label-fish::after      { content: "鱼类 🐟"; }
+body[data-lang="chinese"] #label-tree-nuts::after { content: "坚果 🌰"; }
+body[data-lang="chinese"] #label-sesame::after    { content: "芝麻"; }
+body[data-lang="chinese"] #label-milk::after      { content: "牛奶 🥛"; }
+body[data-lang="chinese"] #label-eggs::after      { content: "鸡蛋 🥚"; }
+
+/* ----------------------------------------------------
+   HINDI DICTIONARY LOOPS
+   ---------------------------------------------------- */
+body[data-lang="hindi"] #start-btn::after         { content: "आगे बढ़ने के लिए टैप करें"; }
+body[data-lang="hindi"] #submit-allergies::after { content: "कैमरा पर जाएं 📷"; }
+body[data-lang="hindi"] .safe-title::after       { content: "कोई चयनित एलर्जेन नहीं मिला ✅"; }
+body[data-lang="hindi"] .safe-desc::after        { content: "हमारा स्कैनर टेक्स्ट मिस कर सकता है। हमेशा पैकेज पर मौजूद सामग्री और एलर्जेन चेतावनियों की पुष्टि करें।"; }
+body[data-lang="hindi"] .unsafe-title::after     { content: "खाने के लिए असुरक्षित! ❌"; }
+body[data-lang="hindi"] .unsafe-desc::after      { content: "इस भोजन में आपके चुने हुए एक या अधिक एलर्जेन मौजूद हैं।"; }
+/* Labels */
+body[data-lang="hindi"] #label-peanuts::after   { content: "मूंगफली 🥜"; }
+body[data-lang="hindi"] #label-soybeans::after  { content: "सोयाबीन 🌱"; }
+body[data-lang="hindi"] #label-wheat::after     { content: "गेहूं 🌾"; }
+body[data-lang="hindi"] #label-fish::after      { content: "मछली 🐟"; }
+body[data-lang="hindi"] #label-tree-nuts::after { content: "ट्री नट्स 🌰"; }
+body[data-lang="hindi"] #label-sesame::after    { content: "तिल"; }
+body[data-lang="hindi"] #label-milk::after      { content: "दूध 🥛"; }
+body[data-lang="hindi"] #label-eggs::after      { content: "अंडे 🥚"; }
+
+
+/* ----------------------------------------------------
+   CAMERA CAPTURE BUTTON TRANSLATIONS
+   ---------------------------------------------------- */
+body[data-lang="english"] #capture-btn::after { content: "Scan!"; }
+body[data-lang="spanish"] #capture-btn::after { content: "¡Escanear!"; }
+body[data-lang="chinese"] #capture-btn::after { content: "扫描！"; }
+body[data-lang="hindi"]   #capture-btn::after { content: "स्कैन करें!"; }
+
+
+/* ----------------------------------------------------
+   RETRY RESULT SCAN BUTTON TRANSLATIONS
+   ---------------------------------------------------- */
+body[data-lang="english"] #retry-result-scan::after { content: "Scan another label"; }
+body[data-lang="spanish"] #retry-result-scan::after { content: "Escanear otra etiqueta"; }
+body[data-lang="chinese"] #retry-result-scan::after { content: "扫描另一个标签"; }
+body[data-lang="hindi"]   #retry-result-scan::after { content: "दूसरा लेबल स्कैन करें"; }
+
+/* ----------------------------------------------------
+   RETRY ERROR SCAN BUTTON TRANSLATIONS
+   ---------------------------------------------------- */
+body[data-lang="english"] #retry-scan::after { content: "Try another scan"; }
+body[data-lang="spanish"] #retry-scan::after { content: "Intentar otro escaneo"; }
+body[data-lang="chinese"] #retry-scan::after { content: "尝试重新扫描"; }
+body[data-lang="hindi"]   #retry-scan::after { content: "दूसरा स्कैन आज़माएं"; }
+
+
+/* ----------------------------------------------------
+   UNVERIFIED LABEL TITLE TRANSLATIONS
+   ---------------------------------------------------- */
+body[data-lang="english"] #unverified-title::after { content: "Could Not Verify Label"; }
+body[data-lang="spanish"] #unverified-title::after { content: "No se pudo verificar la etiqueta"; }
+body[data-lang="chinese"] #unverified-title::after { content: "无法验证标签"; }
+body[data-lang="hindi"]   #unverified-title::after { content: "लेबल सत्यापित नहीं किया जा सका"; }
+
+
+/* ----------------------------------------------------
+   TEXT SUMMARY VIEW TRANSLATIONS
+   ---------------------------------------------------- */
+body[data-lang="english"] #label-text-summary::after { content: "Text read from the label"; }
+body[data-lang="spanish"] #label-text-summary::after { content: "Texto leído de la etiqueta"; }
+body[data-lang="chinese"] #label-text-summary::after { content: "从标签读取的文本"; }
+body[data-lang="hindi"]   #label-text-summary::after { content: "लेबल से पढ़ा गया टेक्स्ट"; }

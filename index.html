@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- // sets up the basic HTML structure for the SafeBite app's welcome screen // -->
+    <!-- sets the translation for the computer to read the language in 8-bit binary -->
+    <meta charset="UTF-8" />
+    <!-- //updates the screen based on the size of the device -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- //sets the title of the page, which will appear in the brower tab as a name -->
+    <title>SafeBite</title>
+
+    <!-- //links the CSS file -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- // welcome screen is visible by default -->
+    <div id="welcome-screen" class="screen" style="display: block;">
+
+      <!-- //hello heading that will rotate through languages -->
+      <h1 class="rotating-hello"></h1>
+
+      <button id="chinese-btn">你好  </button>
+      <button id="spanish-btn">Español  </button>
+      <button id="english-btn">English  </button>
+      <button id="hindi-btn">हिंदी</button>
+
+    </div>
+
+    <div id="allergy-setup" class="screen" style="display: none;">
+      <!-- //selects the checkboxes for the set allergies //Adding <br /> -->
+      <!-- at the end puts each allergy on its own new line so they stack nicely! -->
+<label id="label-peanuts"><input type="checkbox" id="peanuts-checkbox" value="peanuts" /></label> <br />
+<label id="label-soybeans"><input type="checkbox" id="soybeans-checkbox" value="soybeans" /></label> <br />
+<label id="label-wheat"><input type="checkbox" id="wheat-checkbox" value="wheat" /></label> <br />
+<label id="label-fish"><input type="checkbox" id="fish-checkbox" value="fish" /></label> <br />
+<label id="label-tree-nuts"><input type="checkbox" id="tree-nuts-checkbox" value="tree nuts" /></label> <br />
+<label id="label-sesame"><input type="checkbox" id="sesame-checkbox" value="sesame" /></label> <br />
+<label id="label-milk"><input type="checkbox" id="milk-checkbox" value="milk" /></label> <br />
+<label id="label-eggs"><input type="checkbox" id="eggs-checkbox" value="eggs" /></label> <br />
+
+
+      <!-- //button to submit the allergies and move to the next screen -->
+<button id="submit-allergies"></button>
+      <p id="selection-error" role="alert"></p>
+    </div>
+
+    <!-- //next screen where user can take a picture of the label, accessing the -->
+    <!-- devices's camera -->
+    <div id="camera-screen" class="screen" style="display: none;">
+      <video id="webcam" autoplay playsinline></video>
+
+<!-- button captures an image from the stream then puts it into base64-->    
+<button id="capture-btn"></button>
+<p id="scan-status" role="status"></p>
+<canvas id="canvas" style="overflow:auto"></canvas>
+    </div>
+
+ <!-- //next screen where the user will see if the food is safe or not based on the OCR results and their selected allergies -->   
+    <div id="safe-screen" class="screen" style="display: none;">
+<!--    //emptys the h1 and p elements so they can be updated based on the language selected -->  
+      <h1 class="safe-title"</h1>
+      <p class="safe-desc"></p>
+    </div>
+
+    <div id="unsafe-screen" class="screen" style="display: none;">
+     <h1 class="unsafe-title"></h1>
+     <p class="unsafe-desc"></p>
+    </div>
+
+  <!-- if the ocr fails to read the label, this screen is displayed -->
+    <div id="unverified-screen" class="screen" style="display: none;">
+      <h1 id="unverified-title"></h1>
+      <p id="unverified-message" role="alert"></p>
+      <button id="retry-scan"></button>
+    </div>
+
+    <section id="scan-details" class="screen" style="display: none;">
+      <p id="scan-match-message"></p>
+      <details>
+
+       <!-- // displays the text read from the label in a collapsible section, allowing the user to see the OCR results--> 
+<summary id="label-text-summary"></summary>
+        <pre id="recognized-text"></pre>
+      </details>
+    <!--  // button to allow the user to scan another label if they want to check more food items -->
+      <button id="retry-result-scan"></button>
+    </section>
+ 
+    <!-- //loads the Tesseract.js library from a CDN, which is used for OCR processing of the captured image, it is minified to reduce file size and improve loading times. The index.js script is also loaded, which contains the main logic for the SafeBite app. -->
+    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+    <script src="index.js"></script>
+  </body>
+</html> 
