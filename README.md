@@ -1,13 +1,17 @@
-# Safe-Bite-CAC
+# SafeBite
 
-## Run the app
+SafeBite is a web app that scans food ingredient labels using your camera to instantly check for allergens.
 
-Serve the project over `localhost` (camera access is not available to most pages opened as `file://` URLs). For example:
+## How It Works
+1. **Camera Capture:** Takes a live photo of a food label.
+2. **Text Scanning:** Uses an in-browser OCR tool (Tesseract.js) to turn the image into readable text.
+3. **Instant Alert:** JavaScript checks the text for your allergens and updates the screen right away.
 
-```sh
-python3 -m http.server 8000
-```
+## Built With
+* HTML / CSS
+* JavaScript
+* Tesseract.js
 
-Then open `http://localhost:8000` in a browser and allow camera access. Tesseract.js runs OCR in the browser; its library and English language data are loaded from jsDelivr, so an internet connection is needed the first time it is used. The captured image is processed in the browser and is not sent to an OCR backend.
-
-OCR can miss or misread small, blurry, or poorly lit ingredient text. Always verify the package label directly.
+## How to Run It
+## Live Demo
+Try SafeBite live here: https://safebite-q6tpp4pvp-safe-bite-eve-samuel.vercel.app/
